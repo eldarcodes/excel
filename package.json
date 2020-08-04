@@ -1,0 +1,31 @@
+{
+  "name": "excel-course",
+  "version": "1.0.0",
+  "description": "Pure JavaScript Excel Application",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vladilenm/excel-course.git"
+  },
+  "keywords": [
+    "js",
+    "javascript",
+    "excel"
+  ],
+  "author": "Vladilen Minin <vladilen.minin@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vladilenm/excel-course/issues"
+  },
+  "homepage": "https://github.com/vladilenm/excel-course#readme",
+  "private": true,
+  "devDependencies": {
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11"
+  }
+}
