@@ -12,7 +12,8 @@
     "linebreak-style": 0,
     "require-jsdoc": "off",
     "operator-linebreak": 0,
-    "indent": "off"
+    "indent": "off",
+    "space-before-function-paren": "off"
   },
   "extends": ["eslint:recommended", "google"]
 }
