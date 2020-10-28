@@ -3,6 +3,7 @@ class Dom {
     this.$el =
       typeof selector === 'string' ? document.querySelector(selector) : selector
   }
+
   html(html) {
     if (typeof html === 'string') {
       this.$el.innerHTML = html
@@ -10,10 +11,12 @@ class Dom {
     }
     return this.$el.outerHTML.trim()
   }
+
   clear() {
     this.html('')
     return this
   }
+
   on(eventType, callback) {
     this.$el.addEventListener(eventType, callback)
   }
@@ -41,9 +44,11 @@ class Dom {
   closest(selector) {
     return $(this.$el.closest(selector))
   }
+
   getCoords() {
     return this.$el.getBoundingClientRect()
   }
+
   findAll(selector) {
     return this.$el.querySelectorAll(selector)
   }
@@ -57,11 +62,23 @@ class Dom {
   }
 
   addClass(className) {
-    return this.$el.classList.add(className)
+    this.$el.classList.add(className)
+    return this
+  }
+
+  text(text) {
+    if (typeof text === 'string') {
+      this.$el.textContent = text
+      return this
+    } else if (this.$el.tagName.toLowerCase() === 'input') {
+      return this.$el.value.trim()
+    }
+    return this.$el.textContent.trim()
   }
 
   removeClass(className) {
-    return this.$el.classList.remove(className)
+    this.$el.classList.remove(className)
+    return this
   }
   id(parse) {
     if (parse) {

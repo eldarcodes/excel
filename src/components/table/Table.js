@@ -9,10 +9,13 @@ import {matrix, nextSelector} from './../../core/utils'
 export class Table extends ExcelComponent {
   static className = 'excel__table'
 
-  constructor($root) {
+  constructor($root, options) {
     super($root, {
-      listeners: ['mousedown', 'keydown'],
+      name: 'Table',
+      listeners: ['mousedown', 'keydown', 'input'],
+      ...options,
     })
+    this.unsubs = []
   }
 
   toHTML() {
@@ -23,7 +26,18 @@ export class Table extends ExcelComponent {
     super.init()
     this.selection = new TableSelection()
     const $cell = this.$root.find('[data-id="0:0"]')
+    this.selectCell($cell)
+    this.$on('formula:input', (text) => {
+      this.selection.current.text(text)
+    })
+    this.$on('formula:done', () => {
+      this.selection.current.focus()
+    })
+  }
+
+  selectCell($cell) {
     this.selection.select($cell)
+    this.$emit('table:select', $cell)
   }
 
   onMousedown(event) {
@@ -57,7 +71,11 @@ export class Table extends ExcelComponent {
       event.preventDefault()
       const id = this.selection.current.id(true)
       const $next = this.$root.find(nextSelector(key, id))
-      this.selection.select($next)
+      this.selectCell($next)
     }
+  }
+
+  onInput(event) {
+    this.$emit('table:input', $(event.target))
   }
 }
